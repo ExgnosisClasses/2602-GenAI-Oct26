@@ -2,6 +2,7 @@
 ## Lab 1 -- Build a Prompt-Driven Feature
 
 
+
 ---
 
 ## Overview
@@ -41,10 +42,6 @@ echo $env:OPENAI_API_KEY
 ```
 
 If nothing prints, set it for the current session using the key your instructor gave you:
-
-You can also run the curl command in the desktop `EnvSet.txt` file to confirm that you get a list of models from OpenAI.
-
-
 
 ```powershell
 $env:OPENAI_API_KEY = "sk-..."
@@ -594,11 +591,13 @@ pricing:
       input-per-million: 0.10
       cached-input-per-million: 0.01
       output-per-million: 0.50
-    gpt-6.1-sol:
+    "[gpt-6.1-sol]":
       input-per-million: 2.00
       cached-input-per-million: 0.10
       output-per-million: 10.00
 ```
+
+> **Note:** The key `gpt-6.1-sol` contains a dot, which Spring Boot normally reads as a separator between levels of the property name. The quotes and square brackets tell Spring Boot to keep the dot as part of the map key. Without them, IntelliJ reports "Cannot resolve configuration property" and the price is bound under the wrong key.
 
 Add a default reasoning effort under the existing `triage` block:
 

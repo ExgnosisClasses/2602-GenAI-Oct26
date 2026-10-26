@@ -1,7 +1,8 @@
 # Lab 1 -- Build a Prompt-Driven Feature
 ## Worked Solution
 
-
+> **Course:** Generative AI for Java Developers
+> **Lab:** 1 - Build a Prompt-Driven Feature
 
 ---
 
@@ -141,7 +142,7 @@ pricing:
       input-per-million: 0.10
       cached-input-per-million: 0.01
       output-per-million: 0.50
-    gpt-6.1-sol:
+    "[gpt-6.1-sol]":
       input-per-million: 2.00
       cached-input-per-million: 0.10
       output-per-million: 10.00
@@ -742,6 +743,11 @@ The project could not be compiled in the environment where it was written, becau
 | `IllegalArgumentException` mentioning `format` | `{format}` added to only one `user.st` file in Task 3.1 | Add it to both versions |
 | `No price configured for model ...` | Model name not covered by `pricing.models` | Add a price entry whose key is a prefix of the reported model name |
 | Comparison run prints per-request log lines | `application-compare.yml` missing or profile not active | Check the file name and the quoting of `"-Dspring-boot.run.profiles=compare"` in PowerShell |
+| `No plugin found for prefix 'spring-boot'` | `mvn` run outside the project folder | `cd` to the folder that contains `pom.xml` |
+| HTTP client reports `Connection refused` on `localhost:8080` | The application is not running, usually because startup failed | Read the application console (not the HTTP client output) for `APPLICATION FAILED TO START` or a YAML error |
+| Startup works only after `mvn clean` | A deleted resource (for example a second `application.yaml`) still exists in `target/classes`, or a previous instance is still running | Keep only `src/main/resources/application.yml`, run `mvn clean` once, and stop the old instance before starting a new one |
+| No `SimpleLoggerAdvisor` output in Task 1.5 | `logging` block indented under `spring:`, or logger level set on too narrow a package | Put `logging:` at the top level and set `org.springframework.ai: DEBUG`; restart the application |
+| `TriageController` does not compile after Task 2.3 | `triage` now takes two arguments | Expected; Task 2.4 updates the controller |
 | Exercise 1 fails with a JSON parsing error | The model returned output that does not match the schema | Run again; if it repeats, check the reasoning effort and output limit are not truncating the reply |
 
 ### Timing
